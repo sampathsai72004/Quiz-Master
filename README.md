@@ -1,102 +1,87 @@
-<h1 align="center">📘 Quiz Management System</h1>
+# 📘 Quiz Management System  
 
-<p align="center">
-  A powerful and user-friendly <b>Flask-based Quiz Platform</b> with <b>Admin & User roles</b>, 
-  secure authentication, and complete content management.
-</p>
+*An intelligent and user-friendly platform to manage quizzes with Admin & User roles.*  
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python" />
-  <img src="https://img.shields.io/badge/Flask-Framework-green?logo=flask" />
-  <img src="https://img.shields.io/badge/SQLite-Database-orange?logo=sqlite" />
-  <img src="https://img.shields.io/badge/Bootstrap-Frontend-purple?logo=bootstrap" />
-</p>
+---
+
+## 🚀 Overview  
+
+The **Quiz Management System** is a Flask-based web application that allows administrators to manage subjects, chapters, quizzes, and questions while enabling users to take quizzes, track their progress, and improve learning outcomes. With secure authentication, dynamic rendering, and responsive design, it ensures a seamless experience for both educators and learners.  
+
+---
+
+## 🎯 Why Quiz Management System?  
+
+- **For Admins:**  
+  Effortlessly create and manage subjects, chapters, quizzes, and questions. Monitor student performance with detailed reports.  
+
+- **For Users:**  
+  Register, take quizzes, track scores, and reattempt quizzes. Get instant feedback and detailed result summaries.  
+
+---
+
+## 🌟 Key Features  
+
+- **🔐 Authentication & Security:** Secure login with password hashing and session management.  
+- **👨‍🏫 Admin Dashboard:** CRUD operations for subjects, chapters, quizzes, questions, and options.  
+- **👩‍🎓 User Portal:** Attempt quizzes with timers, view results, and track performance history.  
+- **📊 Analytics:** Score tracking and detailed performance reports.  
+- **🖥️ Modern UI:** Responsive Bootstrap-based frontend with dynamic Jinja2 templates.  
+- **🗂️ Database Management:** Powered by SQLite & SQLAlchemy ORM.  
+
+---
+
+## 🛠️ Technology Stack  
+
+- **Programming Language:** Python  
+- **Backend Framework:** Flask  
+- **Frontend:** HTML5, CSS3, Bootstrap, JavaScript  
+- **Database:** SQLite (via SQLAlchemy ORM)  
+- **Authentication:** Flask-Login + Werkzeug Security  
+- **Templating Engine:** Jinja2  
+
+---
+
+## ⚙️ How It Works  
+
+1. **User/Admin Authentication:** Secure login and registration.  
+2. **Admin Role:** Create and manage quizzes, questions, and options.  
+3. **User Role:** Attempt quizzes, submit answers, and view results.  
+4. **Result Analysis:** Store scores in the database and display progress history.  
+
+---
+
+## 🎓 Benefits & Impact  
+
+| Stakeholder     | Benefits                                                   |
+|-----------------|------------------------------------------------------------|
+| Admins          | Simplifies quiz management, easy tracking of student scores |
+| Users           | Engaging quiz experience, score history, learning feedback |
+| Institutions    | Efficient learning tool, scalable and lightweight system   |  
 
 ---
 
 ## 🎥 Demo Video  
 
-> 📺 Click below to watch the demo of the project:  
+[![Quiz Management System Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID "Quiz Management System Demo")  
 
-[![Quiz Management System Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID "Quiz Management System Demo")
-
-*(Replace `YOUR_VIDEO_ID` with your YouTube video link ID. If you want a local `.mp4` or `.gif`, upload it to the repo and use `![Demo](demo.mp4)`)*
+*(Replace `YOUR_VIDEO_ID` with your actual YouTube demo link)*  
 
 ---
 
-## 📖 Overview  
+## 🏗️ System Architecture  
 
-The **Quiz Management System** is designed for **educational institutions, trainers, and learners** to manage quizzes efficiently.  
-It offers:  
-
-- **Admin Panel** 🛠️ → Manage subjects, chapters, quizzes, questions, and answer options.  
-- **User Dashboard** 🎓 → Take quizzes, track scores, and analyze performance.  
-- **Secure Authentication** 🔐 → Role-based login (Admin/User).  
-
-This ensures a **complete learning ecosystem** where admins can create structured content, and students can engage through interactive quizzes.  
-
----
-
-## 🚀 Features  
-
-### 🔐 Authentication & Security  
-✔️ Role-based login system (**Admin/User**)  
-✔️ Password hashing with **Werkzeug Security**  
-✔️ Session management with **Flask-Login**  
-
-### 👨‍🏫 Admin Features  
-✔️ Add, edit, delete **Subjects, Chapters, Quizzes, Questions, and Options**  
-✔️ Search & filter quizzes easily  
-✔️ Track user performances and scores  
-
-*Example Admin Workflow:*  
-1. Create a **Subject** (e.g., *Mathematics*).  
-2. Add **Chapters** (e.g., *Algebra, Geometry*).  
-3. Add **Quizzes** under each chapter.  
-4. Add **Questions** with multiple choice **Options**.  
-5. Mark the correct answers ✅  
-
-### 👩‍🎓 User Features  
-✔️ Register and log in to the platform  
-✔️ Explore **Subjects** and **Chapters**  
-✔️ Take quizzes with a **timer** ⏳  
-✔️ View **past scores** and performance analysis  
-✔️ Reattempt quizzes with previous results stored  
-
-*Example User Workflow:*  
-1. Log in as a user.  
-2. Choose a **subject → chapter → quiz**.  
-3. Answer questions within the **time limit**.  
-4. Submit and view score instantly.  
-5. Check performance summary with **marks & answers**.  
-
-### 🖥️ System Features  
-✔️ Clean & responsive **Bootstrap UI**  
-✔️ **MVC Architecture** for maintainable code  
-✔️ Lightweight **SQLite database** (easy setup, portable)  
-✔️ **Dynamic content rendering** with Jinja2 templates  
-
----
-
-
----
-
-### 2. Beautiful version (with emojis & line breaks) → Use Mermaid Live Editor / Export PNG
-If you want **your exact design** (with emojis + `<br/>`), you’ll need to render it outside GitHub.  
-
-👉 Steps:  
-1. Copy this into [Mermaid Live Editor](https://mermaid.live):  
 ```mermaid
 flowchart TD
     %% Users
-    A[👨‍💻 User] -->|Login/Register| B[⚙️ Flask Application]
-    G[👨‍🏫 Admin] -->|Login| B
+    A[User] -->|Login/Register| B[Flask Application]
+    G[Admin] -->|Login| B
 
     %% Flask Core
-    B --> C[🔐 Authentication Layer<br/>(Flask-Login + Werkzeug)]
-    B --> D[🗄️ Database Layer<br/>(SQLAlchemy ORM)]
-    B --> E[🎨 Frontend Layer<br/>(Jinja2 + Bootstrap)]
+    B[Flask Application] --> C[Authentication Layer (Flask-Login + Werkzeug)]
+    B --> D[Database Layer (SQLAlchemy ORM)]
+    B --> E[Frontend Layer (Jinja2 + Bootstrap)]
 
     %% Database
-    D --> F[(🗃️ SQLite Database)]
-    F -->|Stores Data| H[(📚 Subjects, 📖 Chapters, 📝 Quizzes,<br/>❓ Questions, ✅ Options, 📊 Scores)]
+    D --> F[(SQLite Database)]
+    F -->|Stores Data| H[(Subjects, Chapters, Quizzes, Questions, Options, Scores)]
