@@ -82,8 +82,16 @@ This ensures a **complete learning ecosystem** where admins can create structure
 
 ```mermaid
 flowchart TD
-    A[User/Admin] -->|Login| B[Flask Application]
-    B -->|Flask-Login| C[Authentication Layer]
-    B -->|SQLAlchemy ORM| D[(SQLite Database)]
-    B -->|Jinja2 Templates| E[Frontend (Bootstrap UI)]
-    D -->|Stores| F[Subjects, Chapters, Quizzes, Questions, Options, Scores]
+    %% Users
+    A[👨‍💻 User] -->|Login/Register| B[Flask Application]
+    G[👨‍🏫 Admin] -->|Login| B
+
+    %% Flask Core
+    B[⚙️ Flask Application] --> C[🔐 Authentication Layer<br/>(Flask-Login + Werkzeug)]
+    B --> D[🗄️ Database Layer<br/>(SQLAlchemy ORM)]
+    B --> E[🎨 Frontend Layer<br/>(Jinja2 + Bootstrap)]
+
+    %% Database
+    D --> F[(SQLite Database)]
+    F -->|Stores Data| H[(📚 Subjects, 📖 Chapters, 📝 Quizzes,<br/>❓ Questions, ✅ Options, 📊 Scores)]
+
