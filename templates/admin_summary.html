@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+
+
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+           
+            <a class="navbar-brand" href="/admin_dashboard">Admin Dashboard</a>
+            
+            <!-- Toggler for mobile view -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin_dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('routes.admin_quizzes') }}">Quizzes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin_summary">Summary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('routes.admin_settings') }}">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Admin Summary</h2>
+
+    <div class="row g-4 text-center">
+        <div class="col-md-3"><div class="card p-3"><h6>Total Subjects</h6><h4>{{ total_subjects }}</h4></div></div>
+        <div class="col-md-3"><div class="card p-3"><h6>Total Chapters</h6><h4>{{ total_chapters }}</h4></div></div>
+        <div class="col-md-3"><div class="card p-3"><h6>Total Quizzes</h6><h4>{{ total_quizzes }}</h4></div></div>
+        <div class="col-md-3"><div class="card p-3"><h6>Total Users</h6><h4>{{ total_users }}</h4></div></div>
+    </div>
+
+    <div class="row g-4 mt-4">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h6 class="text-info">Latest Quizzes</h6>
+                <ul class="list-group list-group-flush">
+                    {% for quiz in latest_quizzes %}
+                    <li class="list-group-item">{{ quiz.Date_of_quiz }} – {{ quiz.No_of_questions }} questions</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3 text-center">
+                <h6 class="text-info">Average Score</h6>
+                <h2>{{ average_scores }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-4">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h6 class="text-info text-center">Average Score Over Time</h6>
+                {% if line_chart %}
+                <img src="data:image/png;base64,{{ line_chart }}" class="img-fluid border rounded shadow-sm" alt="Line Chart">
+                {% else %}
+                <p class="text-muted">No chart data available</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h6 class="text-info text-center">Quiz Attempt Count</h6>
+                {% if bar_chart %}
+                <img src="data:image/png;base64,{{ bar_chart }}" class="img-fluid border rounded shadow-sm" alt="Bar Chart">
+                {% else %}
+                <p class="text-muted">No chart data available</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-5 p-3">
+        <h5>User Scores</h5>
+        <table class="table table-bordered table-striped table-sm bg-white text-dark">
+            <thead>
+                <tr><th>User</th><th>Quiz Date</th><th>Score</th></tr>
+            </thead>
+            <tbody>
+                {% for user in user_scores %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.quiz_name }}</td>
+                    <td>{{ user.latest_score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

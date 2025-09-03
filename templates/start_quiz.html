@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='user.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">User Dashboard</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/user_dashboard">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/scores">Scores</a></li>
+                <li class="nav-item"><a class="nav-link" href="/summary">Summary</a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container my-5">
+
+    
+    <h1 class="text-center">
+        {% if quiz.chapter and quiz.chapter.subject %}
+            {{ quiz.chapter.subject.SubName }} - {{ quiz.chapter.Ch_name }}
+        {% elif quiz.chapter %}
+            {{ quiz.chapter.Ch_name }}
+        {% else %}
+            Quiz: {{ quiz.Q_name }}
+        {% endif %}
+    </h1>
+
+    <h3 class="text-center">Quiz Date: {{ quiz.Date_of_quiz }}</h3>
+    <p class="text-center"><strong>Time Duration:</strong> {{ quiz.Time_duration }} minutes</p>
+    
+    <div id="timer" class="text-center my-3" style="font-size: 24px; color: #dc3545;">
+        Time Remaining: <span id="time-left"></span>
+    </div>
+
+    <form action="{{ url_for('routes.submit_quiz', quiz_id=quiz.Q_id) }}" method="POST">
+
+        {% for question in quiz.questions %}
+        <div class="card my-4">
+            <div class="card-body">
+                <h5 class="card-title">Question {{ loop.index }}:</h5>
+                <p>{{ question.Qs_statement }}</p>
+
+                {% for option in question.options %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" 
+                           name="question_{{ question.Qs_id }}" 
+                           value="{{ option.O_id }}" 
+                           id="option_{{ option.O_id }}" required>
+                    <label class="form-check-label" for="option_{{ option.O_id }}">
+                        {{ option.O_statement }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success">Submit Quiz</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    let duration = {{ quiz.Time_duration }} * 60;  
+    const timerElement = document.getElementById("time-left");
+
+    function updateTimer() {
+        let minutes = Math.floor(duration / 60);
+        let seconds = duration % 60;
+
+        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (duration <= 0) {
+            clearInterval(timer);
+            alert("Time's up! Submitting quiz automatically.");
+            document.querySelector('form').submit();
+        }
+        duration--;
+    }
+
+    const timer = setInterval(updateTimer, 1000);
+    updateTimer();  
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

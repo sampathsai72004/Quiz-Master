@@ -1,0 +1,1148 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(120deg, #4b6cb7, #182848);
+    background-size: 400% 400%;
+    animation: gradientBackground 8s ease infinite;
+    color: #fff;
+    text-align: center;
+}
+
+@keyframes gradientBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+body.quiz-management {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #4b6cb7, #182848);
+    color: #f0f0f0;
+    display: block;
+    text-align: left;
+}
+
+
+body.quiz-management .navbar {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 0.8rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background 0.3s;
+}
+
+body.quiz-management .navbar-brand {
+    color: #64ffda;
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+body.quiz-management .navbar-brand:hover {
+    color: #76c893;
+}
+
+body.quiz-management .nav-link {
+    color: #ddd;
+    font-size: 1rem;
+    transition: color 0.3s;
+    margin-left: 1rem;
+}
+
+body.quiz-management .nav-link:hover {
+    color: #64ffda;
+}
+
+
+body.quiz-management .container {
+    padding: 5rem 2rem 2rem; /* Adjust for fixed navbar */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+body.quiz-management h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #64ffda;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+
+.chapter-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid #0d6efd;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.chapter-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.quiz-count-badge {
+    font-size: 0.9rem;
+    background-color: #6c757d;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+}
+
+.subject-header {
+    border-bottom: 2px dashed #dee2e6;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #f0f0f0;
+    font-size: 1.5rem;
+}
+
+
+body.quiz-management .card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+body.quiz-management .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.quiz-management .card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #64ffda;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+
+body.quiz-management .list-group-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+    transition: background 0.3s;
+}
+
+body.quiz-management .list-group-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+body.quiz-management .btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+
+
+body.quiz-management .btn-primary {
+    background: #64ffda;
+    color: #182848;
+    border: 1px solid #4dcca3;
+}
+
+body.quiz-management .btn-primary:hover {
+    background: #52e8c7;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 255, 180, 0.4);
+}
+
+body.quiz-management .btn-danger {
+    background: #ff6b9e;
+    color: white;
+    border: 1px solid #e05d87;
+}
+
+body.quiz-management .btn-danger:hover {
+    background: #ff5c89;
+    transform: translateY(-4px);
+}
+
+body.quiz-management .btn-warning {
+    background: #ffd166;
+    color: #182848;
+    border: 1px solid #e6b84c;
+}
+
+body.quiz-management .btn-warning:hover {
+    background: #f9c13d;
+    transform: translateY(-4px);
+}
+
+body.quiz-management .btn-success {
+    background: #76c893;
+    color: white;
+    border: 1px solid #5cb37b;
+}
+
+body.quiz-management .btn-success:hover {
+    background: #65b584;
+    transform: translateY(-4px);
+}
+
+body.quiz-management table {
+    width: 100%;
+    color: #f0f0f0;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+body.quiz-management table th, 
+body.quiz-management table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.quiz-management table th {
+    background: #182848;
+    color: #64ffda;
+    font-weight: bold;
+}
+
+body.quiz-management table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s;
+}
+
+body.quiz-management .btn-floating {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #64ffda;
+    color: #182848;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+body.quiz-management .btn-floating:hover {
+    transform: scale(1.1);
+    background: #76c893;
+}
+
+@media (max-width: 768px) {
+    body.quiz-management .container {
+        padding: 5rem 1rem;
+    }
+
+    body.quiz-management .btn {
+        padding: 0.5rem 1rem;
+    }
+
+    body.quiz-management .card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    body.quiz-management .container {
+        padding: 4rem 0.8rem;
+    }
+
+    body.quiz-management .btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+.login-container,
+.register-container {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 30px 40px;
+    width: 350px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    text-align: center;
+}
+
+.login-container h1,
+.register-container h3 {
+    font-size: 24px;
+    color: #ffd700;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+}
+
+.login-container h3 {
+    font-size: 18px;
+    color: #ffa500;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.login-container label,
+.register-container label {
+    display: block;
+    text-align: left;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.login-container input,
+.register-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 14px;
+    color: #000;
+    background: rgba(255, 255, 255, 0.8);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.login-container input:focus,
+.register-container input:focus {
+    border: 2px solid #76b852;
+}
+
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #000;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #ff6a00;
+}
+
+
+.error-text {
+    display: block;
+    font-size: 12px;
+    color: #ff6b6b;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+
+.btn {
+    width: auto;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ff6a00, #ee0979);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    margin: 0 auto;
+    display: block;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #ffa500, #ff6b6b);
+    transform: translateY(-3px);
+}
+
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.links a {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffd700;
+    transition: color 0.3s ease;
+}
+
+.links a:hover {
+    color: #ffa500;
+}
+
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    width: 100%;
+    padding: 20px;
+}
+
+.role-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 200px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.role-button i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.admin-btn {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: white;
+    border: 3px solid #d72638;
+    box-shadow: 0 10px 20px rgba(255, 65, 108, 0.5);
+}
+
+.user-btn {
+    background: linear-gradient(135deg, #1e90ff, #00c6ff);
+    color: white;
+    border: 3px solid #0078d7;
+    box-shadow: 0 10px 20px rgba(30, 144, 255, 0.5);
+}
+
+.role-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+
+body.admin-dashboard {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    color: #f0f0f0;
+    background: linear-gradient(120deg, #4b6cb7, #182848);
+    display: block;
+    text-align: left;
+    height: auto;
+}
+
+
+body.admin-dashboard .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem 1.5rem;  /* Smaller padding */
+    height: 70px;            /* Reduced height */
+    transition: background 0.3s, height 0.3s;
+}
+
+
+body.admin-dashboard .navbar:hover {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+
+body.admin-dashboard .navbar-brand {
+    font-size: 1.2rem;
+    color: #64ffda;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+
+body.admin-dashboard .nav-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    transition: color 0.3s;
+}
+
+
+body.admin-dashboard .nav-link:hover {
+    color: #64ffda;
+}
+
+
+body.admin-dashboard .nav-link.active {
+    color: #64ffda;
+    border-bottom: 2px solid #64ffda;
+}
+
+
+body.admin-dashboard .container {
+    padding: 5rem 2rem 3rem;  
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+body.admin-dashboard .card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.8rem;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.admin-dashboard .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+body.admin-dashboard .card-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #64ffda;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+body.admin-dashboard .btn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 5px;
+    margin: 0.3rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+body.admin-dashboard .btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+
+body.admin-dashboard .btn-primary {
+    background: #64ffda;
+    color: #182848;
+    border-color: #4dcca3;
+}
+
+body.admin-dashboard .btn-danger {
+    background: #ff6b9e;
+    color: white;
+    border-color: #e05d87;
+}
+
+body.admin-dashboard .btn-warning {
+    background: #ffd166;
+    color: #182848;
+    border-color: #e6b84c;
+}
+
+body.admin-dashboard .btn-success {
+    background: #76c893;
+    color: white;
+    border-color: #5cb37b;
+}
+
+
+body.admin-dashboard .btn-floating {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #64ffda;
+    color: #182848;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+body.admin-dashboard .btn-floating:hover {
+    transform: scale(1.1);
+}
+
+
+body.admin-dashboard .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.05);
+    color: #f0f0f0;
+    transition: box-shadow 0.3s, border 0.3s;
+}
+
+
+body.admin-dashboard .form-control:focus {
+    box-shadow: 0 0 10px #64ffda;
+    border-color: #64ffda;
+    outline: none;
+}
+
+body.admin-dashboard .list-unstyled {
+    list-style: none;
+    padding-left: 0;
+}
+
+body.admin-dashboard .chapter-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.admin-dashboard .search-container {
+    margin-bottom: 2rem;
+}
+
+body.admin-dashboard .search-result-count {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    body.admin-dashboard .navbar {
+        height: 50px;         
+        padding: 0.4rem 1rem;
+    }
+
+    body.admin-dashboard .navbar-brand {
+        font-size: 1rem;
+    }
+
+    body.admin-dashboard .nav-link {
+        font-size: 0.85rem;
+    }
+
+    body.admin-dashboard .container {
+        padding: 4.5rem 1rem 2rem;
+    }
+}
+
+body.admin-summary {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: #f0f0f0;
+    background: linear-gradient(120deg, #4b6cb7, #182848);
+}
+
+body.admin-summary .navbar {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 0.8rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background 0.3s;
+}
+
+body.admin-summary .navbar-brand {
+    color: #64ffda;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+body.admin-summary .navbar-brand:hover {
+    color: #76c893;
+}
+
+body.admin-summary .nav-link {
+    color: #ddd;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+body.admin-summary .nav-link:hover {
+    color: #64ffda;
+}
+
+body.admin-summary .container {
+    padding: 4rem 2rem 2rem; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+body.admin-summary .card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+body.admin-summary .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.admin-summary .card-title {
+    color: #64ffda;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+body.admin-summary .card-text {
+    color: #f0f0f0;
+    font-size: 1rem;
+}
+
+body.admin-summary .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    text-transform: capitalize;
+}
+
+body.admin-summary .btn-primary {
+    background: #64ffda;
+    color: #182848;
+    border-color: #4dcca3;
+}
+
+body.admin-summary .btn-danger {
+    background: #ff6b9e;
+    color: white;
+    border-color: #e05d87;
+}
+
+body.admin-summary .btn-warning {
+    background: #ffd166;
+    color: #182848;
+    border-color: #e6b84c;
+}
+
+body.admin-summary .btn-success {
+    background: #76c893;
+    color: white;
+    border-color: #5cb37b;
+}
+
+body.admin-summary .btn:hover {
+    opacity: 0.85;
+    transform: translateY(-3px);
+}
+
+body.admin-summary table {
+    width: 100%;
+    color: #f0f0f0;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+body.admin-summary table th, 
+body.admin-summary table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.admin-summary table th {
+    background: #182848;
+    color: #64ffda;
+    font-weight: bold;
+}
+
+body.admin-summary table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s;
+}
+
+body.admin-summary .list-group-item {
+    background: rgba(255, 255, 255, 0.05);
+    color: #f0f0f0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s;
+}
+
+body.admin-summary .list-group-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.admin-summary .btn-floating {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #64ffda;
+    color: #182848;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+body.admin-summary .btn-floating:hover {
+    transform: scale(1.1);
+    background: #76c893;
+}
+
+
+@media (max-width: 992px) {
+    body.admin-summary .container {
+        padding: 5rem 1.5rem;
+    }
+
+    body.admin-summary .navbar {
+        padding: 0.6rem 1rem;
+    }
+
+    body.admin-summary .btn {
+        font-size: 0.9rem;
+    }
+
+    body.admin-summary .card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    body.admin-summary .container {
+        padding: 5rem 1rem;
+    }
+
+    body.admin-summary .btn {
+        padding: 0.5rem 1rem;
+    }
+
+    body.admin-summary .card {
+        padding: 1.2rem;
+    }
+
+    body.admin-summary table th, 
+    body.admin-summary table td {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    body.admin-summary .container {
+        padding: 4rem 0.8rem;
+    }
+
+    body.admin-summary .btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    body.admin-summary .card {
+        padding: 1rem;
+    }
+
+    body.admin-summary table th, 
+    body.admin-summary table td {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+    }
+}
+
+.delete-chapter-btn {
+    background: #ff6b9e;
+    color: white;
+    border: 1px solid #e05d87;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.delete-chapter-btn:hover {
+    background: #ff5c89;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 158, 0.3);
+}
+
+.chapter-delete-confirm {
+    background: rgba(255, 107, 158, 0.1);
+    border-left: 3px solid #ff6b9e;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+}
+
+.chapter-item-with-delete {
+    position: relative;
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid #64ffda;
+    transition: all 0.3s ease;
+}
+
+.chapter-item-with-delete:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+.delete-btn-container {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+body.quiz-management .search-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border-left: 4px solid #64ffda;
+}
+
+body.quiz-management .search-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+body.quiz-management .search-card .card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #64ffda;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem 1.5rem;
+}
+
+body.quiz-management .search-card .card-body {
+    padding: 1.5rem;
+}
+
+body.quiz-management .search-input-group {
+    position: relative;
+}
+
+body.quiz-management .search-input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+body.quiz-management .search-input:focus {
+    outline: none;
+    border-color: #64ffda;
+    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.quiz-management .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+body.quiz-management .search-btn {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    bottom: 4px;
+    padding: 0 1.2rem;
+    background: linear-gradient(135deg, #64ffda, #52e8c7);
+    color: #182848;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+body.quiz-management .search-btn:hover {
+    background: linear-gradient(135deg, #52e8c7, #40d4b5);
+    transform: translateY(-2px);
+}
+
+body.quiz-management .users-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1rem;
+}
+
+body.quiz-management .users-table th {
+    background: rgba(24, 40, 72, 0.8);
+    color: #64ffda;
+    font-weight: bold;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+body.quiz-management .users-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    vertical-align: middle;
+}
+
+body.quiz-management .users-table tr:last-child td {
+    border-bottom: none;
+}
+
+body.quiz-management .users-table tr:hover {
+    background: rgba(100, 255, 218, 0.05);
+}
+
+body.quiz-management .user-role-badge {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+body.quiz-management .user-role-badge.admin {
+    background: rgba(255, 107, 158, 0.2);
+    color: #ff6b9e;
+    border: 1px solid #ff6b9e;
+}
+
+body.quiz-management .user-role-badge.user {
+    background: rgba(118, 200, 147, 0.2);
+    color: #76c893;
+    border: 1px solid #76c893;
+}
+
+@media (max-width: 768px) {
+    body.quiz-management .search-card {
+        margin-bottom: 1rem;
+    }
+    
+    body.quiz-management .search-input {
+        padding: 0.7rem 1rem;
+    }
+    
+    body.quiz-management .search-btn {
+        padding: 0 1rem;
+    }
+    
+    body.quiz-management .users-table th,
+    body.quiz-management .users-table td {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    body.quiz-management .search-card .card-header {
+        padding: 0.8rem 1rem;
+        font-size: 1.1rem;
+    }
+    
+    body.quiz-management .search-card .card-body {
+        padding: 1rem;
+    }
+    
+    body.quiz-management .users-table th,
+    body.quiz-management .users-table td {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+    
+    body.quiz-management .user-role-badge {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.75rem;
+    }
+}
+
+

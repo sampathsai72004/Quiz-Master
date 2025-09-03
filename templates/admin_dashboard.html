@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="admin-dashboard">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            
+            <a class="navbar-brand" href="/admin_dashboard"> Admin Dashboard </a>
+            
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin_dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('routes.admin_quizzes') }}">Quizzes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin_summary">Summary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('routes.admin_settings') }}">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container mt-4">
+    <form action="{{ url_for('routes.add_subject') }}" method="POST" class="mb-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label for="subjectName" class="form-label">New Subject Name</label>
+                <input type="text" name="name" id="subjectName" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="subjectDescription" class="form-label">Description</label>
+                <input type="text" name="description" id="subjectDescription" class="form-control" required>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success w-100">Add Subject</button>
+            </div>
+        </div>
+    </form>
+
+        
+        <div class="search-container">
+            <form action="{{ url_for('routes.search') }}" method="GET" class="d-flex">
+                <input type="text" name="query" class="form-control me-2" 
+                       placeholder="Search subjects, chapters, descriptions..." 
+                       value="{{ search_query if search_query }}">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </form>
+            {% if search_query %}
+            <div class="search-result-count">
+                Found {{ subjects|length }} subject(s) with matching results
+            </div>
+            {% endif %}
+        </div>
+    
+
+    {% for subject, chapters in subjects.items() %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <strong>{{ subject.SubName }}</strong>
+            <div class="float-end">
+                <form method="POST" action="{{ url_for('routes.delete_subject', subject_id=subject.Sub_id) }}">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>{{ subject.Sub_Description }}</p>
+            <form action="{{ url_for('routes.edit_subject', subject_id=subject.Sub_id) }}" method="POST" class="row g-2">
+                <div class="col-md-5">
+                    <input type="text" name="name" class="form-control" value="{{ subject.SubName }}" required>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" name="description" class="form-control" value="{{ subject.Sub_Description }}" required>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-warning w-100">Update</button>
+                </div>
+            </form>
+
+            <hr>
+
+            <form action="{{ url_for('routes.add_chapter', subject_id=subject.Sub_id) }}" method="POST" class="mb-3">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <input type="text" name="chapter_name" class="form-control" placeholder="New Chapter Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="chapter_description" class="form-control" placeholder="Chapter Description" required>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-success w-100">Add Chapter</button>
+                    </div>
+                </div>
+            </form>
+
+            {% for chapter in chapters %}
+            <div class="border p-2 mb-2">
+                <strong>{{ chapter.Ch_name }}</strong>
+                <p class="mb-1">{{ chapter.Ch_description }}</p>
+                <form action="{{ url_for('routes.edit_chapter', chapter_id=chapter.Ch_id) }}" method="POST" class="row g-2 align-items-end">
+                    <div class="col-md-4">
+                        <input type="text" name="name" class="form-control" value="{{ chapter.Ch_name }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="description" class="form-control" value="{{ chapter.Ch_description }}" required>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-warning w-100">Update</button>
+                    </div>
+                </form>
+                <!-- Added Delete Chapter Form -->
+                <form action="{{ url_for('routes.delete_chapter', chapter_id=chapter.Ch_id) }}" method="POST" class="mt-2">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete Chapter</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

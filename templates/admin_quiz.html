@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Quizzes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/quiz.css">
+
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            
+            <a class="navbar-brand" href="/admin_dashboard">Admin Dashboard</a>
+            
+         
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin_dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('routes.admin_quizzes') }}">Quizzes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin_summary">Summary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('routes.admin_settings') }}">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Quizzes for Chapter: <strong>{{ chapter.Ch_name }}</strong></h2>
+
+   
+    <form action="{{ url_for('routes.add_quiz', chapter_id=chapter.Ch_id) }}" method="POST" class="row g-3 mb-4 bg-white p-3 rounded shadow-sm">
+        <h5>Add New Quiz</h5>
+        <div class="col-md-3">
+            <label class="form-label">Date</label>
+            <input type="date" name="date_of_quiz" class="form-control" required>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Time Duration (min)</label>
+            <input type="number" name="time_duration" class="form-control" required>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">No. of Questions</label>
+            <input type="number" name="no_of_questions" class="form-control" required>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Total Marks</label>
+            <input type="number" name="total_marks" class="form-control" required>
+        </div>
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-success">Add Quiz</button>
+        </div>
+    </form>
+
+    {% for quiz in quizzes %}
+    <div class="card mb-4 quiz-card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <span class="badge bg-primary me-2">Quiz {{ loop.index }}</span>
+                <strong>{{ quiz.Date_of_quiz.strftime('%b %d, %Y') }}</strong>
+                <span class="badge bg-secondary ms-3"><i class="fas fa-clock"></i> {{ quiz.Time_duration }} mins</span>
+                <span class="badge bg-info ms-1"><i class="fas fa-question"></i> {{ quiz.No_of_questions }} questions</span>
+            </div>
+            <div>
+                <form action="{{ url_for('routes.delete_quiz', quiz_id=quiz.Q_id) }}" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+            {% for question in quiz.questions %}
+            <div class="border rounded p-3 mb-3">
+                {% if request.args.get('edit_question_id')|int == question.Qs_id %}
+                <form action="{{ url_for('routes.edit_question', question_id=question.Qs_id) }}" method="POST">
+                    <div class="mb-2">
+                        <input type="text" name="statement" class="form-control" value="{{ question.Qs_statement }}" required>
+                    </div>
+                    <div class="row g-2">
+                        {% for opt in question.options %}
+                        <div class="col">
+                            <input type="text" name="option{{ loop.index }}" class="form-control" value="{{ opt.O_statement }}" required>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row mt-2 g-2">
+                        <div class="col-md-4">
+                            <select name="correct_option" class="form-select" required>
+                                {% for opt in question.options %}
+                                <option value="{{ loop.index }}" {% if opt.Is_correct %}selected{% endif %}>Option {{ ['A','B','C','D'][loop.index0] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" name="marks" class="form-control" value="{{ question.Marks }}" required>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a href="{{ url_for('routes.admin_quiz', chapter_id=chapter.Ch_id) }}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+                {% else %}
+                <div class="d-flex justify-content-between">
+                    <div class="w-100">
+                        <strong>Q{{ loop.index }}:</strong> {{ question.Qs_statement }}
+                        <span class="badge bg-dark ms-2">{{ question.Marks }} marks</span>
+                        <ul class="mt-2">
+                            {% for opt in question.options %}
+                            <li class="px-2 py-1 rounded {% if opt.Is_correct %}correct-answer{% endif %}">
+                                {{ ['A', 'B', 'C', 'D'][loop.index0] }}. {{ opt.O_statement }}
+                                {% if opt.Is_correct %}<i class="fas fa-check-circle text-success ms-1"></i>{% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="text-end ms-3">
+                        <a href="{{ url_for('routes.admin_quiz', chapter_id=chapter.Ch_id, edit_question_id=question.Qs_id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                        <form action="{{ url_for('routes.delete_question', question_id=question.Qs_id) }}" method="POST" class="mt-2">
+                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i> Delete</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <!-- Add Question Form -->
+            <form action="{{ url_for('routes.add_question', quiz_id=quiz.Q_id) }}" method="POST" class="mt-3 bg-light p-3 rounded">
+                <h6>Add Question</h6>
+                <div class="mb-2">
+                    <input type="text" name="statement" class="form-control" placeholder="Question text" required>
+                </div>
+                <div class="row g-2">
+                    <div class="col"><input type="text" name="option1" class="form-control" placeholder="Option A" required></div>
+                    <div class="col"><input type="text" name="option2" class="form-control" placeholder="Option B" required></div>
+                    <div class="col"><input type="text" name="option3" class="form-control" placeholder="Option C" required></div>
+                    <div class="col"><input type="text" name="option4" class="form-control" placeholder="Option D" required></div>
+                </div>
+                <div class="row mt-2 g-2">
+                    <div class="col-md-6">
+                        <select name="correct_option" class="form-select" required>
+                            <option value="" disabled selected>Select correct option</option>
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="4">D</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <button type="submit" class="btn btn-primary">Add Question</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

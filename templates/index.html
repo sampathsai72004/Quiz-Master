@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}Welcome to Quiz Master{% endblock %}
+
+{% block content %}
+    <div class="container text-center mt-5">
+    
+        <br><br><br>
+        <h2 class="mb-4 fw-bold text-uppercase text-primary">Select Your Role</h2>
+        <br><br>
+        <div class="button-container">
+            <a href="{{ url_for('routes.login', role='admin') }}" 
+               class="role-button admin-btn">
+                <i class="fas fa-user-shield"></i>
+                <span>Admin</span>
+            </a>
+            <a href="{{ url_for('routes.login', role='user') }}" 
+               class="role-button user-btn">
+                <i class="fas fa-user-graduate"></i>
+                <span>User</span>
+            </a>
+        </div>
+    </div>
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+{% endblock %}
