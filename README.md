@@ -71,17 +71,29 @@ The **Quiz Management System** is a Flask-based web application that allows admi
 
 ## 🏗️ System Architecture  
 
-```mermaid
-flowchart TD
-    %% Users
-    A[User] -->|Login/Register| B[Flask Application]
-    G[Admin] -->|Login| B
+flowchart TB
+    subgraph Client[🌐 Client Side]
+        A[👨‍🎓 User]:::user
+        B[👨‍🏫 Admin]:::admin
+    end
 
-    %% Flask Core
-    B[Flask Application] --> C[Authentication Layer (Flask-Login + Werkzeug)]
-    B --> D[Database Layer (SQLAlchemy ORM)]
-    B --> E[Frontend Layer (Jinja2 + Bootstrap)]
+    subgraph App[⚙️ Flask Application]
+        C[🔐 Authentication (Flask-Login + Werkzeug)]
+        D[🖥️ Controllers/Routes (MVC)]
+        E[🎨 Templates (Jinja2 + Bootstrap)]
+    end
 
-    %% Database
-    D --> F[(SQLite Database)]
-    F -->|Stores Data| H[(Subjects, Chapters, Quizzes, Questions, Options, Scores)]
+    subgraph DB[(🗄️ Database Layer - SQLite via SQLAlchemy)]
+        F[(📚 Subjects)]
+        G[(📖 Chapters)]
+        H[(📝 Quizzes)]
+        I[(❓ Questions)]
+        J[(✅ Options)]
+        K[(📊 Scores)]
+    end
+
+    A --> C
+    B --> C
+    C --> D
+    D --> E
+    D --> DB
