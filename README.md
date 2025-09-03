@@ -61,6 +61,30 @@ The **Quiz Management System** is a Flask-based web application that allows admi
 
 ---
 
+## 🗂️ Database Schema  
+
+### Tables  
+
+1. **Admin** – manages subjects, chapters, quizzes, and questions  
+2. **Users** – stores student details and login credentials  
+3. **Subjects** – defines quiz subjects  
+4. **Chapters** – associated with subjects  
+5. **Quizzes** – linked with chapters, contains metadata  
+6. **Questions** – linked with quizzes  
+7. **Options** – multiple-choice options for questions  
+8. **Scores** – stores quiz performance of users  
+
+### Relationships  
+
+- One Subject → Many Chapters  
+- One Chapter → Many Quizzes  
+- One Quiz → Many Questions  
+- One Question → Many Options  
+- One Quiz → Many Scores  
+- One User → Many Scores  
+
+---
+
 ## 🎥 Demo Video  
 
 [Quiz Management System Demo](https://drive.google.com/file/d/1tXBVyJkyy_2uUmiyRAD5TyICKRfe3v3P/view?usp=sharing "Quiz Management System Demo")  
@@ -71,4 +95,3 @@ The **Quiz Management System** is a Flask-based web application that allows admi
 ## 🏗️ System Architecture   
 
 [System Architecture](https://drive.google.com/file/d/1VVSneDkPQX2exfqetfiTVkD-YJoCNYT5/view?usp=sharing)
-
