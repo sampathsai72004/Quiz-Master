@@ -78,20 +78,25 @@ This ensures a **complete learning ecosystem** where admins can create structure
 
 ---
 
-## 🏗️ System Architecture  
 
+---
+
+### 2. Beautiful version (with emojis & line breaks) → Use Mermaid Live Editor / Export PNG
+If you want **your exact design** (with emojis + `<br/>`), you’ll need to render it outside GitHub.  
+
+👉 Steps:  
+1. Copy this into [Mermaid Live Editor](https://mermaid.live):  
 ```mermaid
 flowchart TD
     %% Users
-    A[👨‍💻 User] -->|Login/Register| B[Flask Application]
+    A[👨‍💻 User] -->|Login/Register| B[⚙️ Flask Application]
     G[👨‍🏫 Admin] -->|Login| B
 
     %% Flask Core
-    B[⚙️ Flask Application] --> C[🔐 Authentication Layer<br/>(Flask-Login + Werkzeug)]
+    B --> C[🔐 Authentication Layer<br/>(Flask-Login + Werkzeug)]
     B --> D[🗄️ Database Layer<br/>(SQLAlchemy ORM)]
     B --> E[🎨 Frontend Layer<br/>(Jinja2 + Bootstrap)]
 
     %% Database
-    D --> F[(SQLite Database)]
+    D --> F[(🗃️ SQLite Database)]
     F -->|Stores Data| H[(📚 Subjects, 📖 Chapters, 📝 Quizzes,<br/>❓ Questions, ✅ Options, 📊 Scores)]
-
