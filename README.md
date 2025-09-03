@@ -63,9 +63,8 @@ The **Quiz Management System** is a Flask-based web application that allows admi
 
 ## 🎥 Demo Video  
 
-[![Quiz Management System Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID "Quiz Management System Demo")  
+[![Quiz Management System Demo]](https://drive.google.com/file/d/1tXBVyJkyy_2uUmiyRAD5TyICKRfe3v3P/view?usp=sharing "Quiz Management System Demo")  
 
-*(Replace `YOUR_VIDEO_ID` with your actual YouTube demo link)*  
 
 ---
 
