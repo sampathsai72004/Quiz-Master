@@ -1,51 +1,229 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
+/* Navbar Styling */
 .navbar {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem 1.5rem;
+    height: 70px;
+    transition: background 0.3s, height 0.3s;
 }
 
-
-.chapter-card {
-    transition: all 0.2s ease;
-    border-left: 4px solid #0d6efd;
-}
-.chapter-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.navbar:hover {
+    background: rgba(0, 0, 0, 0.85);
 }
 
-
-.quiz-count-badge {
-    font-size: 0.8rem;
-    background-color: #6c757d;
+.nav-brand {
+    font-size: 1.2rem;
+    color: #64ffda;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
+.nav-link {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #64ffda;
+}
+
+.nav-link.active {
+    border-bottom: 2px solid #64ffda;
+}
+
+/* Body Styling */
+body {
+    background: linear-gradient(120deg, #4b6cb7, #182848);
+    background-size: 400% 400%;
+    animation: gradientBackground 8s ease infinite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Styling */
+h1.text-center, .subject-header {
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
 
 .subject-header {
-    border-bottom: 2px dashed #dee2e6;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    background: none;
 }
 
-
-body {
-    background-color: #f8f9fa;
+/* Card Styling */
+.card, .quiz-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.8rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.btn-primary {
-    transition: all 0.3s;
-}
-.btn-primary:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-.correct-answer {
-    background-color: #d4edda;
-    border-left: 4px solid #28a745;
-}
+.card:hover,
 .quiz-card:hover {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
 }
+
+/* Card Header */
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Card Body */
+.card-body {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    color: #fff;
+    border-radius: 0 0 12px 12px;
+}
+
+.card-body h5, .card-body p {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.card-body p.text-muted {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Chapter Card */
+.chapter-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chapter-card .text-muted {
+    color: #e0e0e0;
+}
+
+/* Quiz Count Badge */
+.quiz-count-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    background: #6c757d;
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+/* Button Styling */
+.btn-primary {
+    background: #0d6efd;
+    border: none;
+    border-radius: 30px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+    transition: all 0.4s ease;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0, 86, 179, 0.5);
+}
+
+/* Correct Answer Card */
+.correct-answer {
+    background: #d4edda;
+    border-left: 5px solid #28a745;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #155724;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hidden Form */
 .hidden-form {
     display: none;
+}
+
+.hidden-form.show {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Smooth Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0d6efd;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+}
+
+/* Smooth Gradient Background Animation */
+@keyframes gradientBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Link Styling */
+a {
+    color: #64ffda;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #76c893;
 }

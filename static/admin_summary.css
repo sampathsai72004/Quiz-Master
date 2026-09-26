@@ -1,0 +1,52 @@
+body {
+    min-height: 100vh;
+    background: linear-gradient(120deg, #4b6cb7, #182848);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #f8f9fa;
+    padding-top: 80px; /* Ensure content is not hidden behind the navbar */
+}
+
+.navbar {
+    position: fixed; /* Fix the navbar to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    padding: 0.5rem 1.5rem;  /* Smaller padding */
+    height: 70px;            /* Reduced height */
+    transition: background 0.3s, height 0.3s;
+}
+
+.navbar:hover {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.navbar-brand {
+    font-size: 1.2rem;
+    color: #64ffda;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #64ffda;
+}
+
+.nav-link.active {
+    color: #64ffda;
+    border-bottom: 2px solid #64ffda;
+}

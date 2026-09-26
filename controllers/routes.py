@@ -675,7 +675,7 @@ def summary():
     scores = Score.query.filter_by(User_id=user_id).all()
 
     if not scores:
-        return render_template('performance_summary.html', line_chart=None, bar_chart=None, pie_chart=None)
+        return render_template('summary.html', line_chart=None, bar_chart=None, pie_chart=None)
     
     timestamps = [score.Timestamp.strftime('%Y-%m-%d') for score in scores]
     total_scores = [score.Total_scored for score in scores]
